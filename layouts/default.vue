@@ -1,54 +1,56 @@
 <template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
-      <lang-selector />
-    </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      clipped-left
-      dense
+  <v-card class="overflow-hidden">
+    <v-app-bar app
+      absolute
+      color="#6A76AB"
       dark
+      shrink-on-scroll
+      prominent
+      src="https://picsum.photos/1920/1080?random"
+      fade-img-on-scroll
+      scroll-target="#scrolling-techniques-3"
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title class="mr-12 align-center">
-        <span class="title">CCOLLEGE</span>
-      </v-toolbar-title>
+      <template v-slot:img="{ props }">
+        <v-img
+          v-bind="props"
+          gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+        ></v-img>
+      </template>
+
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Chaiyaphum Technical College</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
+
+      <template v-slot:extension>
+        <v-tabs align-with-title>
+          <nuxt-link to="login"><v-tab>เข้าสู่ระบบ</v-tab></nuxt-link>
+          <nuxt-link to="/#/"><v-tab>สมุดบันทึกกิจกรรม</v-tab></nuxt-link>
+          <nuxt-link to="/activity/menu"><v-tab>เมนู</v-tab></nuxt-link>
+        </v-tabs>
+      </template>
     </v-app-bar>
-
-    <v-content>
-      <nuxt />
-    </v-content>
-  </v-app>
+    <v-sheet
+      id="scrolling-techniques-3"
+      class="overflow-y-auto"
+      max-height="600"
+    >
+       <v-main>
+      <router-view></router-view>
+      </v-main>
+    </v-sheet>
+  </v-card>
 </template>
-
-<script>
-import LangSelector from '~/components/lang-selector.vue'
-
-export default {
-  components: {
-    LangSelector,
-  },
-
-  computed: {
-    drawer: {
-      get() {
-        return this.$store.state.drawer
-      },
-      set(v) {
-        this.$store.commit('setDrawer', v)
-      },
-    },
-  }, // computed
-
-  watch: {
-    '$store.state.lang'() {
-      this.$i18n.locale = this.$store.state.lang
-    },
-  }, // watch
-}
-</script>

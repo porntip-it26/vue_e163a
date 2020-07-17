@@ -1,14 +1,15 @@
 
 <template>
+
   <form>
     <v-text-field
-      v-model="name"
-      :error-messages="nameErrors"
+      v-model="Username"
+      :error-messages="UsernameErrors"
       :counter="10"
-      label="Name"
+      label="Username"
       required
-      @input="$v.name.$touch()"
-      @blur="$v.name.$touch()"
+      @input="$v.Username.$touch()"
+      @blur="$v.Username.$touch()"
     ></v-text-field>
     <v-text-field
       v-model="email"
@@ -19,13 +20,22 @@
       @blur="$v.email.$touch()"
     ></v-text-field>
     <v-select
-      v-model="select"
-      :items="items"
-      :error-messages="selectErrors"
-      label="Item"
+      v-model="Password"
+      :items="Password"
+      :error-messages="PasswordErrors"
+      label="Password"
       required
-      @change="$v.select.$touch()"
-      @blur="$v.select.$touch()"
+      @change="$v.Password.$touch()"
+      @blur="$v.Password.$touch()"
+    ></v-select>
+    <v-select
+      v-model="Address"
+      :items="Address"
+      :error-messages="addressErrors"
+      label="Address"
+      required
+      @change="$v.Address.$touch()"
+      @blur="$v.Address.$touch()"
     ></v-select>
     <v-checkbox
       v-model="checkbox"
@@ -36,7 +46,7 @@
       @blur="$v.checkbox.$touch()"
     ></v-checkbox>
 
-    <v-btn class="mr-4" @click="submit">submit</v-btn>
-    <v-btn @click="clear">clear</v-btn>
+    <v-btn class="mr-4" @click="submit">ตกลง</v-btn>
+    <nuxt-link to="/#/"><v-btn @click="clear">กลับหน้าแรก</v-btn></v-tab></nuxt-link>
   </form>
 </template>
